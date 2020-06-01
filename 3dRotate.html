@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D旋转立方体</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    body {
+        perspective: 1000px;
+    }
+
+    .lifang {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        margin: 200px auto;
+        /* overflow: hidden; */
+        transform-style: preserve-3d;
+        animation-name: identifier;
+        animation-duration: 10s;
+        /* 无限循环执行 */
+        animation-iteration-count: infinite;
+    }
+
+
+    .lifang .page {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        top: 0;
+        left: 0;
+        background-size: 100% auto;
+        opacity: .8;
+    }
+
+    .front {
+        background-image: url(static/img1.jpg);
+
+        transform: translateZ(100px);
+    }
+
+    .back {
+        transform: translateZ(-100px);
+        background-image: url(static/img2.jpg);
+    }
+
+    .top {
+        transform: rotateX(90deg) translateZ(100px);
+        background-image: url(static/img3.jpg);
+    }
+
+    .bottom {
+        transform: rotateX(90deg) translateZ(-100px);
+        background-image: url(static/img4.jpg);
+    }
+
+    .left {
+        transform: rotateY(90deg) translateZ(-100px);
+        background-image: url(static/img5.jpg);
+    }
+
+    .right {
+        transform: rotateY(90deg) translateZ(100px);
+        background-image: url(static/img6.jpg);
+    }
+
+    @keyframes identifier {
+        0% {
+            /* rotate3d()传参前三个坐标轴x， y， z轴，第四个旋转度数 */
+            transform: rotate3d(1, 1, 1, 0deg);
+        }
+
+        25% {
+            transform: rotate3d(1, 1, 1, 360deg);
+
+        }
+
+        50% {
+            transform: rotate3d(1, 1, -1, 0deg);
+        }
+
+        75% {
+            transform: rotate3d(-1, 1, 1, 360deg);
+        }
+    }
+</style>
+
+<body>
+    <div class="lifang">
+        <div class="page front"></div>
+        <div class="page back"></div>
+        <div class="page top"></div>
+        <div class="page bottom"></div>
+        <div class="page left"></div>
+        <div class="page right"></div>
+    </div>
+</body>
+
+</html>
